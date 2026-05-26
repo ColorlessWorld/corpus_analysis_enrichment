@@ -1,3 +1,8 @@
+# Ignore .txt and .csv files to avoid uploading the original corpus
+# to prevent copyright issues.
+*.txt
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
