@@ -84,6 +84,21 @@ def low_context_name_finder(text, raw_text, match_text_length, punctuation = [',
             new_context = new_context[0]
             name = name_finder(new_context)
             return name
+        # If there's more than one match, check if all of them belong to the same character, otherwise
+        # return a null and a message for debugging.
+        elif len(new_context) > 2:
+            candidate_names = []
+            for match in new_context[:-1]:
+                candidate_name = name_finder(match)
+                if candidate_name != None:
+                    candidate_names.append(candidate_name)
+            if len(set(candidate_names)) == 1:
+                return candidate_names[0]
+            else:
+                print(f'A total of {len(set(candidate_names))} matches have been found:')
+                print(set(candidate_names))
+                return None
+
         # Otherwise print the context for debugging and return a null value.
         else:
             print(text)
